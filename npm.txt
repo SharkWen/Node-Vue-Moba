@@ -1,0 +1,1 @@
+inflection  "复数改单数"

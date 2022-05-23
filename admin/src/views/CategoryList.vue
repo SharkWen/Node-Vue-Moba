@@ -47,7 +47,7 @@ import { ElMessage, ElMessageBox } from "element-plus";
 const router = useRouter();
 const items = ref([]);
 const fetch = async () => {
-  const res = await get("categories");
+  const res = await get("rest/categories");
   items.value = res.data;
 };
 fetch();
@@ -68,7 +68,7 @@ const Del = async (row) => {
       });
     })
     .then(async () => {
-      await del(`/categories/${row._id}`);
+      await del(`rest/categories/${row._id}`);
       fetch();
     });
 };

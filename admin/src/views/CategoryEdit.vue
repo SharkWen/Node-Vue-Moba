@@ -40,10 +40,10 @@ const save = async () => {
   if (!model.name == "") {
     let mes;
     if (id) {
-      await put(`categories/${id}`, { name: model.name  });
+      await put(`rest/categories/${id}`, { name: model.name  });
       mes = "修改成功!";
     } else {
-      await post("categories", { name: model.name ,parentName:model.parentName});
+      await post("rest/categories", { name: model.name ,parentName:model.parentName});
       mes = "保存成功!";
       model.name = "";
     }
@@ -67,11 +67,11 @@ const save = async () => {
   }
 };
 const fetch = async () => {
-  const res = await get(`/categories/${id}`);
+  const res = await get(`rest/categories/${id}`);
   model.name = res.data.name;
 };
 const fetchParents = async () => {
-  const res = await get(`/categories`);
+  const res = await get(`rest/categories`);
   model.parents = res.data;
   console.log(model)
 };

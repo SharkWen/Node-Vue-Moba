@@ -10,6 +10,7 @@
         </div>
       </template>
     </el-table-column>
+    <el-table-column prop='parentName.name' label='Parents'></el-table-column>
     <el-table-column label="Name" width="180">
       <template #default="scope">
         <el-popover effect="light" trigger="hover" placement="top" width="auto">

@@ -1,13 +1,8 @@
 <template>
   <div>
-    <h1>{{ id ? "编辑分类" : "新建分类" }}</h1>
+    <h1>{{ id ? "编辑装备" : "新建装备" }}</h1>
     <el-form label-width="120px" @submit.prevent=" save">
-      <el-form-item label="上级分类">
-        <el-select v-model="model.parents.name" placeholder="选择分类">
-          <el-option v-for="item in model.parents" :key="item._id" :label="item.name" :value="item._id" @click="parentName(item._id)"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="名称">
+      <el-form-item label="装备">
         <el-input style="width: 20vw" v-model="model.name"></el-input>
       </el-form-item>
       <el-form-item>
@@ -26,27 +21,21 @@ const id = useRoute().params.id;
 const router = useRouter();
 const model = reactive({
   name: "",
-  parents: [],
-  parentName:Number,
 });
 
-
-function parentName(name){
-  model.parentName = name
-}
 const save = async () => {
   console.log(model.parents)
   if (!model.name == "") {
     let mes;
     if (id) {
-      await put(`rest/categories/${id}`, { name: model.name  });
+      await put(`rest/items/${id}`, { name: model.name  });
       mes = "修改成功!";
     } else {
-      await post("rest/categories", { name: model.name ,parentName:model.parentName});
+      await post("rest/items", { name: model.name});
       mes = "保存成功!";
       model.name = "";
     }
-    router.push("/categories/list");
+    router.push("/items/list");
     console.log("save");
     ElMessage({
       message: mes,
@@ -66,15 +55,11 @@ const save = async () => {
   }
 };
 const fetch = async () => {
-  const res = await get(`rest/categories/${id}`);
+  const res = await get(`rest/items/${id}`);
   model.name = res.data.name;
 };
-const fetchParents = async () => {
-  const res = await get(`rest/categories`);
-  model.parents = res.data;
-};
+
 id && fetch();
-fetchParents()
 
 
 </script>

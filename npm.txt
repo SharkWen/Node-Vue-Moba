@@ -1,1 +1,2 @@
 inflection  "复数改单数"
+“core-js是“面向JavaScript的模块化标准库”,这意味着它提供大量函数以执行常见且有用的操作

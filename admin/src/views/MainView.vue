@@ -11,6 +11,8 @@
               <template #title>分类</template>
               <el-menu-item index="/categories/create">新建分类</el-menu-item>
               <el-menu-item index="/categories/list">分类列表</el-menu-item>
+              <el-menu-item index="/items/create">新建装备</el-menu-item>
+              <el-menu-item index="/items/list">装备列表</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
         </el-menu>

@@ -23,6 +23,15 @@
         </el-popover>
       </template>
     </el-table-column>
+        <el-table-column label="Icon" width="180">
+      <template #default="scope">
+        <el-popover effect="light" trigger="hover" placement="top" width="auto">
+          <template #reference>
+            <img :src="scope.row.icon" style="height:3rem;" alt="">
+          </template>
+        </el-popover>
+      </template>
+    </el-table-column>
     <el-table-column label="Operations">
       <template #default="scope">
         <el-button

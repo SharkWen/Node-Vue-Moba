@@ -58,4 +58,4 @@ const del= (url) => {
     );
   });
 };
-export { post, get, put ,del};
+export { post, get, put ,del ,instance};

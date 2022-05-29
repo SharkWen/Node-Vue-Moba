@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="items" style="width: 70%" size="large">
+  <el-table :data="items" style="width: 100vw" size="large">
     <el-table-column label="ID" align="center" width="300vw">
       <template #default="scope">
         <div
@@ -10,7 +10,7 @@
         </div>
       </template>
     </el-table-column>
-    <el-table-column label="Name" width="180">
+    <el-table-column label="Name" width="100%">
       <template #default="scope">
         <el-popover effect="light" trigger="hover" placement="top" width="auto">
           <template #default>
@@ -21,6 +21,13 @@
             <el-tag>{{ scope.row.name }}</el-tag>
           </template>
         </el-popover>
+      </template>
+    </el-table-column>
+    <el-table-column label="title"  width="100vw">
+      <template #default="scope">
+
+          <span style="">{{ scope.row.title}}</span>
+
       </template>
     </el-table-column>
         <el-table-column label="Icon" width="180">

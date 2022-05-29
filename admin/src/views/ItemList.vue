@@ -23,11 +23,11 @@
         </el-popover>
       </template>
     </el-table-column>
-        <el-table-column label="Icon" width="180">
+    <el-table-column label="Icon" width="180">
       <template #default="scope">
         <el-popover effect="light" trigger="hover" placement="top" width="auto">
           <template #reference>
-            <img :src="scope.row.icon" style="height:3rem;" alt="">
+            <img :src="scope.row.icon" style="height: 3rem" alt="" />
           </template>
         </el-popover>
       </template>
@@ -60,15 +60,11 @@ const fetch = async () => {
 };
 fetch();
 const Del = async (row) => {
-  ElMessageBox.confirm(
-    "是否删除分类?",
-    "提示",
-    {
-      confirmButtonText: "删除",
-      cancelButtonText: "取消",
-      type: "error",
-    }
-  )
+  ElMessageBox.confirm("是否删除分类?", "提示", {
+    confirmButtonText: "删除",
+    cancelButtonText: "取消",
+    type: "error",
+  })
     .then(() => {
       ElMessage({
         type: "info",

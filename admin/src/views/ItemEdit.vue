@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ id ? "编辑装备" : "新建装备" }}</h1>
+    <h1>{{ id ? "编辑" : "新建" }}物品</h1>
     <el-form label-width="120px" @submit.prevent="save">
       <el-form-item label="装备">
         <el-input style="width: 20vw" v-model="model.name"></el-input>

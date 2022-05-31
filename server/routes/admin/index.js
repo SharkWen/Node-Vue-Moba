@@ -22,7 +22,10 @@ module.exports = app => {
     const queryOptions = {}
     if(req.Model.modelName === 'Category'){
       queryOptions.populate = 'parentName'
+    }else if(req.Model.modelName==='Article'){
+      queryOptions.populate = 'categories'
     }
+    console.log(queryOptions)
     const items = await req.Model.find().setOptions(queryOptions)
     res.send(items)
   })

@@ -1,14 +1,17 @@
 <template>
   <div>
-    <h1>{{ id ? "编辑分类" : "新建分类" }}</h1>
+    <h1>{{ id ? "编辑" : "新建" }}文章</h1>
     <el-form label-width="120px" @submit.prevent="save">
-      <el-form-item label="上级分类">
-        <el-select v-model="model.parentName" placeholder="选择分类">
-          <el-option v-for="item in parents" :key="item._id" :label="item.name" :value="item._id"></el-option>
+      <el-form-item label="所属文章">
+        <el-select v-model="model.categories" placeholder="选择文章" multiple >
+          <el-option v-for="item in categories" :key="item._id" :label="item.name" :value="item._id"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="名称">
-        <el-input style="width: 20vw" v-model="model.name"></el-input>
+      <el-form-item label="标题">
+        <el-input style="width: 20vw" v-model="model.title"></el-input>
+      </el-form-item>
+       <el-form-item label="详情">
+        <el-input style="width: 20vw" v-model="model.body"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
@@ -25,22 +28,22 @@ import { useRouter, useRoute } from "vue-router";
 const id = useRoute().params.id;
 const router = useRouter();
 const model = ref({
-  name: "",
-  parentName:"",
+  title: "",
+  categories:[],
+  body:'',
 });
-const parents = ref([])
-
+const categories = ref([]);
 const save = async () => {
-  if (!model.value.name == "") {
+  if (!model.value.title == "") {
     let mes;
     if (id) {
-      await put(`rest/categories/${id}`, model.value);
+      await put(`rest/articles/${id}`, model.value);
       mes = "修改成功!";
     } else {
-      await post("rest/categories", model.value);
+      await post("rest/articles", model.value);
       mes = "保存成功!";
     }
-    router.push("/categories/list");
+    router.push("/articles/list");
     console.log("save");
     ElMessage({
       message: mes,
@@ -60,17 +63,15 @@ const save = async () => {
   }
 };
 const fetch = async () => {
-  const res = await get(`rest/categories/${id}`);
+  const res = await get(`rest/articles/${id}`);
   model.value = res.data
 };
-const fetchParents = async () => {
+const fetchCategories = async () => {
   const res = await get(`rest/categories`);
-  parents.value = res.data;
+  categories.value = res.data
 };
+fetchCategories();
 id && fetch();
-fetchParents()
-
-
 </script>
 
 <style scoped>

@@ -22,6 +22,11 @@
               <el-menu-item index="/heros/create">新建英雄</el-menu-item>
               <el-menu-item index="/heros/list">英雄列表</el-menu-item>
             </el-menu-item-group>
+            <el-menu-item-group>
+              <template #title>文章</template>
+              <el-menu-item index="/articles/create">新建文章</el-menu-item>
+              <el-menu-item index="/articles/list">英雄文章</el-menu-item>
+            </el-menu-item-group>
           </el-sub-menu>
         </el-menu>
       </el-scrollbar>

@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="items" style="width: 100vw" size="large">
+  <el-table :data="items" style="width: 70%" size="large">
     <el-table-column label="ID" align="center" width="300vw">
       <template #default="scope">
         <div
@@ -10,40 +10,25 @@
         </div>
       </template>
     </el-table-column>
-    <el-table-column label="Name" width="100%">
+    <el-table-column label="Title" width="180">
       <template #default="scope">
         <el-popover effect="light" trigger="hover" placement="top" width="auto">
           <template #default>
-            <div>name: {{ scope.row.name }}</div>
+            <div>name: {{ scope.row.title }}</div>
             <div>address: {{ scope.row.address }}</div>
           </template>
           <template #reference>
-            <el-tag>{{ scope.row.name }}</el-tag>
+            <el-tag>{{ scope.row.title }}</el-tag>
           </template>
         </el-popover>
       </template>
     </el-table-column>
-    <el-table-column label="title"  width="100vw">
-      <template #default="scope">
-
-          <span style="">{{ scope.row.title}}</span>
-
-      </template>
-    </el-table-column>
-        <el-table-column label="Icon" width="180">
-      <template #default="scope">
-        <el-popover effect="light" trigger="hover" placement="top" width="auto">
-          <template #reference>
-            <img :src="scope.row.icon" style="height:3rem;" alt="">
-          </template>
-        </el-popover>
-      </template>
-    </el-table-column>
+    <el-table-column prop="body" label="详情"></el-table-column>
     <el-table-column label="Operations">
       <template #default="scope">
         <el-button
           size="small"
-          @click="router.push(`/heros/edit/${scope.row._id}`)"
+          @click="router.push(`/articles/edit/${scope.row._id}`)"
           >Edit</el-button
         >
         <el-button size="small" type="danger" @click="Del(scope.row)"
@@ -62,7 +47,7 @@ import { ElMessage, ElMessageBox } from "element-plus";
 const router = useRouter();
 const items = ref([]);
 const fetch = async () => {
-  const res = await get("rest/heros");
+  const res = await get("rest/articles");
   items.value = res.data;
 };
 fetch();
@@ -83,8 +68,45 @@ const Del = async (row) => {
       });
     })
     .then(async () => {
-      await del(`rest/heros/${row._id}`);
+      await del(`rest/articles/${row._id}`);
       fetch();
     });
 };
+// import { Timer } from '@element-plus/icons-vue'
+
+// interface User {
+//   date: string
+//   name: string
+//   address: string
+// }
+
+// const handleEdit = (index: number, row: User) => {
+//   console.log(index, row)
+// }
+// const handleDelete = (index: number, row: User) => {
+//   console.log(index, row)
+// }
+
+// const tableData: User[] = [
+//   {
+//     date: '2016-05-03',
+//     name: 'Tom',
+//     address: 'No. 189, Grove St, Los Angeles',
+//   },
+//   {
+//     date: '2016-05-02',
+//     name: 'Tom',
+//     address: 'No. 189, Grove St, Los Angeles',
+//   },
+//   {
+//     date: '2016-05-04',
+//     name: 'Tom',
+//     address: 'No. 189, Grove St, Los Angeles',
+//   },
+//   {
+//     date: '2016-05-01',
+//     name: 'Tom',
+//     address: 'No. 189, Grove St, Los Angeles',
+//   },
+// ]
 </script>

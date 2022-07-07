@@ -1,5 +1,5 @@
 <template>
-  <el-container class="layout-container-demo" style="height:100vh">
+  <el-container class="layout-container-demo" style="height: 100vh">
     <el-aside width="200px">
       <el-scrollbar>
         <el-menu router :default-openeds="['1', '3']">
@@ -26,6 +26,11 @@
               <template #title>文章</template>
               <el-menu-item index="/articles/create">新建文章</el-menu-item>
               <el-menu-item index="/articles/list">英雄文章</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group>
+              <template #title>广告位</template>
+              <el-menu-item index="/ads/create">新建广告</el-menu-item>
+              <el-menu-item index="/ads/list">广告列表</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
         </el-menu>
@@ -67,7 +72,7 @@
 
 <script setup>
 // import { ref } from 'vue'
-import { Menu as  Message, Setting } from '@element-plus/icons-vue'
+import { Menu as Message, Setting } from "@element-plus/icons-vue";
 
 // const item = {
 //   date: '2016-05-02',

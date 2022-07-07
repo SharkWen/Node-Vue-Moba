@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref ,} from "vue";
 import { ElMessage } from "element-plus";
 import { post, get, put } from "../http";
 import { useRouter, useRoute } from "vue-router";
@@ -26,18 +26,18 @@ const id = useRoute().params.id;
 const router = useRouter();
 const model = ref({
   name: "",
-  parentName:"",
+  parentName:"Select" || Number,
 });
 const parents = ref([])
 
 const save = async () => {
-  if (!model.value.name == "") {
+  if (!model.value.name == ""  ) {
     let mes;
     if (id) {
-      await put(`rest/categories/${id}`, model.value);
+      await put(`rest/categories/${id}`,model.value );
       mes = "修改成功!";
     } else {
-      await post("rest/categories", model.value);
+      await post("rest/categories", model.value.parentName !="Select" ? model.value :{name:model.value.name});
       mes = "保存成功!";
     }
     router.push("/categories/list");

@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter,createWebHistory, } from 'vue-router'
 import MainView from '../views/MainView.vue'
 import CategoryEdit from '../views/CategoryEdit.vue'
 import CategoryList from  '../views/CategoryList.vue'
@@ -8,6 +8,8 @@ import HeroEdit from '../views/HeroEdit.vue'
 import HeroList from '../views/HeroList.vue'
 import ArticleEdit from '../views/ArticleEdit.vue'
 import ArticleList from '../views/ArticleList.vue'
+import AdEdit from '../views/AdEdit.vue'
+import AdList from '../views/AdList.vue'
 const routes = [
   {
     path: '/',
@@ -78,17 +80,24 @@ const routes = [
         path:'/articles/delete/:id',
         component:ArticleList,
       },
+      {
+        path:'/ads/list',
+        component:AdList
+      },
+      {
+        path:'/ads/create',
+        component:AdEdit,
+      },
+      {
+        path:'/ads/edit/:id',
+        component:AdEdit,
+      },
     ]
-  },
-  {
-    path: '/CategoryEdit',
-    name: 'CategoryEdit',
-    component: CategoryEdit
   },
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 

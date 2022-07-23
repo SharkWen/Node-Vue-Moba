@@ -1,0 +1,2 @@
+unique-opened="true" 默认展示一个菜单
+:default-active="$route.path" 高亮

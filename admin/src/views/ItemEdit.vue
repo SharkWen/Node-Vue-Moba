@@ -26,7 +26,6 @@
 <script setup>
 import { reactive ,} from "vue";
 import { ElMessage, } from "element-plus";
-import { Plus } from '@element-plus/icons-vue'
 import { post, get, put ,instance} from "../http";
 import { useRouter, useRoute } from "vue-router";
 const id = useRoute().params.id;

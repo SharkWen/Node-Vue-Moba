@@ -1,7 +1,19 @@
 import axios from "axios";
+import { ElMessage } from "element-plus";
 const instance = axios.create({
   baseURL: "http://localhost:3000/admin/api", //设置默认数据根接口
 });
+instance.interceptors.response.use(res =>{
+  return res;
+},err =>{
+  if(err.response.data.message){
+    ElMessage({
+      type:'error',
+      message:err.response.data.message
+    })
+  }
+  return Promise.reject(err);
+})
 const post = (url, data = {}) => {
   return new Promise((resolve, reject) => { // Promise 是一个容器，对象，构造函数
     //新建promise的resolve传出的值将作为then方法返回的promise的resolve的值传递出
@@ -19,10 +31,10 @@ const post = (url, data = {}) => {
       );
   });
 };
-const get = (url, params = {}) => {
+const get = (url) => {
   return new Promise((resolve, reject) => {
     //新建promise的resolve传出的值将作为then方法返回的promise的resolve的值传递出
-    instance.get(url, { params }).then(
+    instance.get(url).then(
       (response) => {
         resolve(response); //请求已完成
       },

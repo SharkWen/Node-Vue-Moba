@@ -1,5 +1,3 @@
-const { modelName } = require('../../models/AdminUser');
-
 module.exports = app => {
   const express = require('express');
   const router = express.Router({
@@ -45,5 +43,25 @@ module.exports = app => {
     const file = req.file;
     file.url = `http://localhost:3000/uploads/${file.filename}`
     res.send(file)
+  })
+
+  app.post('/admin/api/login',async (req,res)=>{
+    const {username,password} = req.body;
+    const AdminUser  = require('../../models/AdminUser');
+    const User = await AdminUser.findOne({username}).select('+password');
+    if(!User){
+      return res.status(422).send({
+        message:"用户名不存在"
+      })
+    } 
+    const isValid = require('bcrypt').compareSync(password,User.password);
+    if(!isValid){
+      return res.status(422).send({
+        message:"密码错误"
+      })
+    }
+    const jwt = require('jsonwebtoken');
+    const token =  jwt.sign({id:User._id},app.get('secret'));
+    res.send({token});
   })
 }

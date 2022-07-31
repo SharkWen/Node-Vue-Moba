@@ -18,6 +18,8 @@ import AdList from '../views/AdList.vue'
 
 import AdminUserEdit from '../views/AdminUserEdit.vue'
 import AdminUserList from '../views/AdminUserList.vue'
+
+import Login from "../views/Login.vue"
 const routes = [
   {
     path: '/',
@@ -105,6 +107,11 @@ const routes = [
       { path: '/admin_users/list', component: AdminUserList },
     ]
   },
+  {
+    path:'/login',
+    name:'Login',
+    component:Login,
+  }
 ]
 
 const router = createRouter({

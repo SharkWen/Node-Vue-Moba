@@ -37,6 +37,12 @@
               <el-menu-item index="/categories/create">新建分类</el-menu-item>
               <el-menu-item index="/categories/list">分类列表</el-menu-item>
             </el-menu-item-group>
+            <el-menu-item-group>
+              <template #title>管理员</template>
+              <el-menu-item index="/admin_users/create"
+                >新建管理员</el-menu-item>
+              <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
+            </el-menu-item-group>
           </el-sub-menu>
           <el-sub-menu index="3">
             <template #title>
@@ -47,13 +53,6 @@
               <el-menu-item index="/ads/create">新建广告</el-menu-item>
               <el-menu-item index="/ads/list">广告列表</el-menu-item>
             </el-menu-item-group>
-          </el-sub-menu>
-          <el-sub-menu index="4">
-            <template #title>
-              <el-icon><message /></el-icon>管理员
-            </template>
-            <el-menu-item index="/admin_users/create">新建管理员</el-menu-item>
-            <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
           </el-sub-menu>
         </el-menu>
       </el-scrollbar>

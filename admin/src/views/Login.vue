@@ -20,7 +20,6 @@
 import {ref} from 'vue';
 import {post} from '../http'
 import {useRouter} from 'vue-router'
-import { ElMessage } from "element-plus";
 const router = useRouter();
 const model = ref({
     username:"",

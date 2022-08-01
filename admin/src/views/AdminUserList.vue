@@ -42,7 +42,6 @@
 import { ref } from "vue";
 import { get, del } from "../http";
 import { useRouter } from "vue-router";
-import { ElMessage, ElMessageBox } from "element-plus";
 const router = useRouter();
 const items = ref([]);
 const fetch = async () => {

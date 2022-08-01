@@ -136,7 +136,6 @@
 
 <script setup>
 import { ref } from "vue";
-import { ElMessage } from "element-plus";
 import { post, get, put, instance } from "../http";
 import { useRouter, useRoute } from "vue-router";
 const id = useRoute().params.id;

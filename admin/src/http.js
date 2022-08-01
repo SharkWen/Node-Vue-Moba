@@ -10,7 +10,7 @@ instance.interceptors.response.use(res =>{
     ElMessage({
       type:'error',
       message:err.response.data.message
-    })
+    });
   }
   return Promise.reject(err);
 })

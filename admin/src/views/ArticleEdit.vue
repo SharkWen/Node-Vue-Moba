@@ -27,7 +27,6 @@
 
 <script setup>
 import { ref } from "vue";
-import { ElMessage } from "element-plus";
 import MdEditor from "md-editor-v3";
 import 'md-editor-v3/lib/style.css'
 import { post, get, put } from "../http";

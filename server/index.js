@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require('express-async-errors');
 app.set('secret','fwef33r9r84')
 app.use(require('cors')())
 app.use(express.json())

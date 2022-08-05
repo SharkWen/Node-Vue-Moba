@@ -29,6 +29,7 @@ const login = async ()=>{
  const res = await post('/login',model.value)
 //sessionStorage.token = res.data.token;//关了没有
   localStorage.token = res.data.token;//关了还有
+   console.log("login")
  router.push("/");
     ElMessage({
       message: "登录成功",

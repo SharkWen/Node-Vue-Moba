@@ -8,7 +8,8 @@
       <el-form-item label="图标">
     <el-upload
     class="avatar-uploader"
-    :action='`${instance.defaults.baseURL}/upload`'
+    :action="getUploadUrl"
+    :headers="getAuthHeards()"
     :show-file-list="true"
     :on-success="afterUpload"
   >
@@ -25,7 +26,7 @@
 
 <script setup>
 import { reactive ,} from "vue";
-import { post, get, put ,instance} from "../http";
+import { post, get, put ,} from "../http";
 import { useRouter, useRoute } from "vue-router";
 const id = useRoute().params.id;
 const router = useRouter();

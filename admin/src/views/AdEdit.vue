@@ -6,31 +6,33 @@
         <el-input style="width: 20vw" v-model="model.name"></el-input>
       </el-form-item>
       <el-form-item label="广告">
-          <el-button text type="primary" @click="model.items.push({})"
-            ><el-icon><Plus /></el-icon>添加广告</el-button
-          >
-          <el-row type="flex" style="width:80%" >
-            <el-col :md="12" v-for="(item, index) in model.items" :key="index">
-              <el-form-item label="跳转链接">
-                <el-input v-model="item.url"></el-input>
-              </el-form-item>
-              <el-form-item label="图标" style="margin-top:20px;">
-                <el-upload
-                  class="avatar-uploader"
-                  :action="`${instance.defaults.baseURL}/upload`"
-                  :show-file-list="true"
-                  :on-success="(res) => (item.image = res.url)" >
-                  <img v-if="item.image" :src="item.image" class="avatar" />
-                  <el-icon v-else class="avatar-uploader-icon"><Plus/></el-icon>
-                </el-upload>
-              </el-form-item>
-              <el-form-item>
-                <el-button type="danger" @click="model.items.splice(index, 1)"
-                  >删除</el-button
-                >
-              </el-form-item>
-            </el-col>
-          </el-row>
+        <el-button text type="primary" @click="model.items.push({})"
+          ><el-icon><Plus /></el-icon>添加广告</el-button
+        >
+        <el-row type="flex" style="width: 80%">
+          <el-col :md="12" v-for="(item, index) in model.items" :key="index">
+            <el-form-item label="跳转链接">
+              <el-input v-model="item.url"></el-input>
+            </el-form-item>
+            <el-form-item label="图标" style="margin-top: 20px;">
+              <el-upload
+                class="avatar-uploader"
+                :action="getUploadUrl"
+                :headers="getAuthHeards()"
+                :show-file-list="true"
+                :on-success="(res) => (item.image = res.url)"
+              >
+                <img style="width:10rem;" v-if="item.image" :src="item.image" class="avatar" />
+                <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+              </el-upload>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="danger" @click="model.items.splice(index, 1)"
+                >删除</el-button
+              >
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
@@ -40,23 +42,23 @@
 </template>
 
 <script setup>
-import { ref ,} from "vue";
-import { post, get, put ,instance} from "../http";
+import { ref } from "vue";
+import { post, get, put,  } from "../http";
 import { useRouter, useRoute } from "vue-router";
 const id = useRoute().params.id;
 const router = useRouter();
 const model = ref({
   name: "",
-  items:[]
+  items: [],
 });
 const save = async () => {
-  if (!model.value.name == ""  ) {
+  if (!model.value.name == "") {
     let mes;
     if (id) {
-      await put(`rest/ads/${id}`,model.value );
+      await put(`rest/ads/${id}`, model.value);
       mes = "修改成功!";
     } else {
-      await post("rest/ads",  model.value);
+      await post("rest/ads", model.value);
       mes = "保存成功!";
     }
     router.push("/ads/list");
@@ -80,11 +82,9 @@ const save = async () => {
 };
 const fetch = async () => {
   const res = await get(`rest/ads/${id}`);
-  model.value = res.data
+  model.value = res.data;
 };
 id && fetch();
-
-
 </script>
 
 <style scoped>

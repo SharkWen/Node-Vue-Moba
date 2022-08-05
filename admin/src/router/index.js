@@ -111,6 +111,7 @@ const routes = [
     path:'/login',
     name:'Login',
     component:Login,
+    meta: { requiresAuth: true }
   }
 ]
 
@@ -119,4 +120,10 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to,from,next)=>{
+  if(!to.meta.requiresAuth && !localStorage.token){
+    return next('/login');
+  }
+  next();
+})
 export default router

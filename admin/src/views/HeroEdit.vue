@@ -55,7 +55,8 @@
           <el-form-item label="图片">
             <el-upload
               class="avatar-uploader"
-              :action="`${instance.defaults.baseURL}/upload`"
+              :action="getUploadUrl"
+              :headers="getAuthHeards()"
               :show-file-list="true"
               :on-success="afterUpload"
             >
@@ -105,11 +106,15 @@
               <el-form-item label="图标">
                 <el-upload
                   class="avatar-uploader"
-                  :action="`${instance.defaults.baseURL}/upload`"
+                  :action="getUploadUrl"
+                  :headers="getAuthHeards()"
                   :show-file-list="true"
-                  :on-success="(res) => (item.icon = res.url)" >
+                  :on-success="(res) => (item.icon = res.url)"
+                >
                   <img v-if="item.icon" :src="item.icon" class="avatar" />
-                  <el-icon v-else class="avatar-uploader-icon"><Plus/></el-icon>
+                  <el-icon v-else class="avatar-uploader-icon"
+                    ><Plus
+                  /></el-icon>
                 </el-upload>
               </el-form-item>
               <el-form-item label="描述">
@@ -136,7 +141,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { post, get, put, instance } from "../http";
+import { post, get, put, } from "../http";
 import { useRouter, useRoute } from "vue-router";
 const id = useRoute().params.id;
 const router = useRouter();
@@ -154,10 +159,10 @@ const model = ref({
   skills: [],
 });
 const select = ref({
-  category:[],
-  items1:[],
-  items2:[]
-})
+  category: [],
+  items1: [],
+  items2: [],
+});
 const save = async () => {
   if (!model.value.name == "") {
     let mes;

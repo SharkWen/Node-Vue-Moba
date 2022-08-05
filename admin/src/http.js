@@ -1,9 +1,20 @@
 import axios from "axios";
-import { ElMessage } from "element-plus";
+import router from "./router/index"
 const instance = axios.create({
   baseURL: "http://localhost:3000/admin/api", //设置默认数据根接口
 });
+instance.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  if(localStorage.token){
+    config.headers.Authorization = "Bearer " + localStorage.token;
+  }
+  return config;
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
 instance.interceptors.response.use(res =>{
+  console.log("response")
   return res;
 },err =>{
   if(err.response.data.message){
@@ -11,6 +22,10 @@ instance.interceptors.response.use(res =>{
       type:'error',
       message:err.response.data.message
     });
+  }
+  
+  if(err.response.status == 401){
+      router.push('/login');
   }
   return Promise.reject(err);
 })

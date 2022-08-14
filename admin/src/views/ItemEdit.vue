@@ -11,7 +11,7 @@
     :action="getUploadUrl"
     :headers="getAuthHeards()"
     :show-file-list="true"
-    :on-success="afterUpload"
+    :on-success="(res)=> model.icon = res.url"
   >
     <img v-if="model.icon" :src="model.icon" class="avatar" />
     <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
@@ -69,9 +69,6 @@ const fetch = async () => {
   model.name = res.data.name;
   model.icon = res.data.icon;
 };
-const afterUpload = (res)=>{
-  model.icon = res.url
-}
 id && fetch();
 </script>
 

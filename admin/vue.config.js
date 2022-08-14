@@ -14,5 +14,8 @@ module.exports = defineConfig({
         resolvers: [ElementPlusResolver()],
       }),
     ],
-  }
+  },
+  outputDir:"dist",
+  assetsDir:"static",
+  publicPath:process.env.NODE_ENV === 'production' ? './' : '/',
 })

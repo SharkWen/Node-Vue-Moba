@@ -1,7 +1,7 @@
 import axios from "axios";
 import router from "./router/index"
 const instance = axios.create({
-  baseURL: "http://localhost:3000/admin/api", //设置默认数据根接口
+  baseURL: "http://124.156.2.38:3000/admin/api", //设置默认数据根接口
 });
 instance.interceptors.request.use(function (config) {
   // Do something before request is sent

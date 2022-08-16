@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <swiper :modules="modules" :pagination="{ clickable: true }">
       <swiper-slide>
         <img class="w-100" src="../assets/images/swiper1.jpeg" alt="" />
@@ -27,8 +26,16 @@
       </div>
     </div>
     <!-- end of nav nav-icons -->
-
-
+    <m-ListCard title="新闻资讯" icon="menu1" :categories="newsCards">
+      <template #items="{ category }">
+        <div class="py-2" v-for="(news, i) in category.newsLists" :key="i">
+          <span>[{{ news.categoryName }}]</span>
+          <span>|</span>
+          <span>{{ news.title }}</span>
+          <span>{{ news.date }}</span>
+        </div>
+      </template>
+    </m-ListCard>
   </div>
 </template>
 
@@ -49,6 +56,64 @@ export default {
   setup() {
     return {
       modules: [Pagination],
+      newsCards: [
+        {
+          name: "热门",
+          newsLists: new Array(5).fill({}).map((v) => ({
+            categoryName: "公告",
+            title: "sdfsdf",
+            date: "06/14",
+          })),
+        },
+        {
+          name: "热门",
+          newsLists: new Array(5).fill({}).map((v) => ({
+            categoryName: "公告",
+            title: "sdfsdf",
+            date: "06/14",
+          })),
+        },
+        {
+          name: "热门",
+          newsLists: new Array(5).fill({}).map((v) => ({
+            categoryName: "公告",
+            title: "sdfsdf",
+            date: "06/14",
+          })),
+        },
+        {
+          name: "热门",
+          newsLists: new Array(5).fill({}).map((v) => ({
+            categoryName: "公告",
+            title: "sdfsdf",
+            date: "06/14",
+          })),
+        },
+        {
+          name: "热门",
+          newsLists: new Array(5).fill({}).map((v) => ({
+            categoryName: "公告",
+            title: "sdfsdf",
+            date: "06/14",
+          })),
+        },
+        {
+          name: "热门",
+          newsLists: new Array(5).fill({}).map((v) => ({
+            categoryName: "公告",
+            title: "sdfsdf",
+            date: "06/14",
+          })),
+        },
+        {
+          name: "热门",
+          newsLists: new Array(5).fill({}).map((v) => ({
+            categoryName: "公告",
+            title: "sdfsdf",
+            date: "06/14",
+          })),
+        },
+      ],
     };
   },
 };

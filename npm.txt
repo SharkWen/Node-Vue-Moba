@@ -7,3 +7,4 @@ bcrypt 散列 一种加密方式
 jsonwebtoken 生成和验证token 
 http-assert 错误处理
 express-async-errors  如果express版本太低需要安装，不然捕获不了错误
+require-all 加载一个文件夹里的所有js文件

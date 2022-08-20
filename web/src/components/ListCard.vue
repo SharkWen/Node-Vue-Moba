@@ -6,15 +6,15 @@
         :class="{ active: active === i }"
         v-for="(category, i) in categories"
         :key="i"
-        @click="active = i"
+        @click="sw.slideTo(i)"
       >
-        <div class="nav-link">{{ category.name }}</div>
+        <div>{{ category.name }}</div>
       </div>
     </div>
     <div class="pt-3">
-      <swiper>
-        <swiper-slide v-for="(category ,i) in categories" :key="i">
-            <slot name="items" :category="category"></slot>
+      <swiper ref="list" :autoHeight="true" @swiper="onSwiper" @slideChange="(index) => (active = index.snapIndex)">
+        <swiper-slide v-for="(category, i) in categories" :key="i">
+          <slot name="items" :category="category"></slot>
         </swiper-slide>
       </swiper>
     </div>
@@ -29,6 +29,10 @@ defineProps({
   categories: { type: Array, required: true },
 });
 const active = ref(0);
+let sw = ref(null);
+const onSwiper = (swiper)=>{
+  sw.value = swiper
+}
 </script>
 
 <style>

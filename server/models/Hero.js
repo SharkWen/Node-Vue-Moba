@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
     name:{type:String},
-    icon:{type:String},
+    avatar:{type:String},
     title:{type:String},
-    category:[{type:mongoose.SchemaTypes.ObjectId,ref:'Category'}],
+    categories:[{type:mongoose.SchemaTypes.ObjectId,ref:'Category'}],
     scores:{
-        diffcult:{type:Number},
+        difficult:{type:Number},
         skills:{type:Number},
         attack:{type:Number},
         survive:{type:Number},
@@ -26,4 +26,4 @@ const schema = new mongoose.Schema({
         description:{type:String}
     }],
 })
-module.exports = mongoose.model('Hero',schema)
+module.exports = mongoose.model('Hero',schema,'heroes');

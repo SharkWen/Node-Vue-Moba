@@ -30,11 +30,11 @@
 
       </template>
     </el-table-column>
-        <el-table-column label="Icon" width="180">
+        <el-table-column label="Avatar" width="180">
       <template #default="scope">
         <el-popover effect="light" trigger="hover" placement="top" width="auto">
           <template #reference>
-            <img :src="scope.row.icon" style="height:3rem;" alt="">
+            <img :src="scope.row.avatar" style="height:3rem;" alt="">
           </template>
         </el-popover>
       </template>

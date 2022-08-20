@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Main from "./views/Main.vue"
+import Main from "./views/Main"
 import Home from "./views/Home"
+import Article from "./views/Article"
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -10,9 +11,15 @@ const router = createRouter({
             component: Main,
             children: [
                 {
-                    path: "/home",
+                    path: "/",
                     name: "home",
                     component: Home,
+                },
+                {
+                    path:"/articles/:id",
+                    name:"articles",
+                    component:Article,
+                    props:true
                 }
             ]
         }

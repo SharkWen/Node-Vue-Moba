@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Main from "./views/Main"
-import Home from "./views/Home"
-import Article from "./views/Article"
+import Main from "./views/Main.vue"
+import Home from "./views/Home.vue"
+import Article from "./views/Article.vue"
+import Hero from "./views/Hero.vue";
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        {path: '/heroes/:id', name: 'hero', component: Hero,},
         {
             path: "/",
             name: "main",
@@ -22,7 +24,8 @@ const router = createRouter({
                     props:true
                 }
             ]
-        }
+        },
+        
     ]
 })
 

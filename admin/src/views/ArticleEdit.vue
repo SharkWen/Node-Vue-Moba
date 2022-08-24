@@ -28,7 +28,7 @@
 <script setup>
 import { ref } from "vue";
 import MdEditor from "md-editor-v3";
-import 'md-editor-v3/lib/style.css'
+import 'md-editor-v3/lib/style.css';
 import { post, get, put } from "../http";
 import { useRouter, useRoute } from "vue-router";
 const id = useRoute().params.id;

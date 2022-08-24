@@ -18,7 +18,7 @@
               <el-upload
                 class="avatar-uploader"
                 :action="getUploadUrl"
-                :headers="getAuthHeards()"
+                :headers="getAuthHead()"
                 :show-file-list="true"
                 :on-success="(res) => (item.image = res.url)"
               >

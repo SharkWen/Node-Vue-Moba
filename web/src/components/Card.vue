@@ -7,7 +7,7 @@
       <div class="fs-xl flex-1 px-2">
         <strong>{{title}}</strong>
       </div>
-      <i class="iconfont icon-menu"></i>
+      <i class="iconfont icon-menu" v-if="!plain"></i>
     </div>
     <div class="card-body pt-3">
       <slot></slot>

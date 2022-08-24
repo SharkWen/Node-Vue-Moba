@@ -13,7 +13,7 @@ app.mixin({
     }
   },
   methods:{
-    getAuthHeards(){
+    getAuthHead(){
       return {
         authorization : `Bearer ${localStorage.token || ''}`
       }

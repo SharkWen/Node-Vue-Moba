@@ -185,3 +185,8 @@ p {
 .text-decoration{
   text-decoration: none;
 }
+
+.link {
+  text-decoration: none;
+  color: map-get($colors, "dark" );
+}

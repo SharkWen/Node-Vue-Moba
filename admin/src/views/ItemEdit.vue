@@ -9,7 +9,7 @@
     <el-upload
     class="avatar-uploader"
     :action="getUploadUrl"
-    :headers="getAuthHeards()"
+    :headers="getAuthHead()"
     :show-file-list="true"
     :on-success="(res)=> model.icon = res.url"
   >

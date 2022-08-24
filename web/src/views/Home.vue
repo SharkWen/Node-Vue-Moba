@@ -29,18 +29,20 @@
     <m-ListCard title="新闻资讯" icon="menu1" :categories="newsCards">
       <template #items="{ category }">
         <div v-for="(news, i) in category.newsList" :key="i">
-          <router-link
-            class="py-2 fs-lg d-flex text-decoration"
-            :to="`/articles/${news._id}`"
-          >
-            <span class="text-info">[{{ news.categoryName }}]</span>
-            <span class="px-2">|</span>
-            <span class="flex-1 text-dark-1 text-ellipsis pr-2">{{
-              news.title
-            }}</span>
-            <!-- <span class="text-grey-1 fs-sm">{{
-              date(news.updatedAt).format("MM/DD")
-            }}</span> -->
+          <router-link class="text-decoration" @click="active = i" :to="`/articles/${news._id}`">
+            <div
+              class="py-2 fs-lg d-flex"
+              :class="{ op: i === active }"
+            >
+              <span class="text-info">[{{ news.categoryName }}]</span>
+              <span class="px-2">|</span>
+              <span class="flex-1 text-dark-1 text-ellipsis pr-2">{{
+                news.title
+              }}</span>
+              <span class="text-grey-1 fs-sm">{{
+                date(news.updatedAt).format("MM/DD")
+              }}</span>
+            </div>
           </router-link>
         </div>
       </template>
@@ -49,15 +51,18 @@
     <m-ListCard title="英雄列表" icon="card-hero" :categories="heroCards">
       <template #items="{ category }">
         <div class="d-flex flex-wrap">
-          <div
-            class="fs-xxs text-center"
+          <router-link
+            class="fs-xxs text-center text-dark text-decoration"
             style="width: 20%"
-            v-for="(hero, i) in category.heroList"
-            :key="i"
+            v-for="hero in category.heroList"
+            :key="hero._id"
+            :to="`/heroes/${hero._id}`"
           >
-            <img :src="hero.avatar" class="p-2 w-100" alt="" />
-            <div>{{ hero.name }}</div>
-          </div>
+            <div>
+              <img :src="hero.avatar" class="p-2 w-100" alt="" />
+              <div>{{ hero.name }}</div>
+            </div>
+          </router-link>
         </div>
       </template>
     </m-ListCard>
@@ -70,6 +75,7 @@ import "swiper/css/pagination";
 import { ref, onMounted } from "vue";
 import $http from "../plugin/http.js";
 import date from "dayjs";
+const active = ref(null);
 const newsCards = ref([]);
 const heroCards = ref([]);
 const fetchNewsCats = async () => {
@@ -112,5 +118,8 @@ onMounted(() => {
       border: none;
     }
   }
+}
+.op {
+  opacity: 0.6;
 }
 </style>

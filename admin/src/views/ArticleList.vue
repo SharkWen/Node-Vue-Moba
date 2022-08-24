@@ -1,6 +1,6 @@
 <template>
-  <el-table :data="items" style="width: 70%" size="large">
-    <el-table-column label="ID" align="center" width="300vw">
+  <el-table :data="items" style="width: 90%" size="large">
+    <el-table-column label="ID" align="center">
       <template #default="scope">
         <div
           style="display: flex; align-items: center; justify-content: center"
@@ -10,7 +10,7 @@
         </div>
       </template>
     </el-table-column>
-    <el-table-column label="Title" width="180">
+    <el-table-column label="Title">
       <template #default="scope">
         <el-popover effect="light" trigger="hover" placement="top" width="auto">
           <template #default>
@@ -51,15 +51,11 @@ const fetch = async () => {
 };
 fetch();
 const Del = async (row) => {
-  ElMessageBox.confirm(
-    "是否删除分类?",
-    "提示",
-    {
-      confirmButtonText: "删除",
-      cancelButtonText: "取消",
-      type: "error",
-    }
-  )
+  ElMessageBox.confirm("是否删除分类?", "提示", {
+    confirmButtonText: "删除",
+    cancelButtonText: "取消",
+    type: "error",
+  })
     .then(() => {
       ElMessage({
         type: "info",
@@ -71,41 +67,20 @@ const Del = async (row) => {
       fetch();
     });
 };
-// import { Timer } from '@element-plus/icons-vue'
-
-// interface User {
-//   date: string
-//   name: string
-//   address: string
-// }
-
-// const handleEdit = (index: number, row: User) => {
-//   console.log(index, row)
-// }
-// const handleDelete = (index: number, row: User) => {
-//   console.log(index, row)
-// }
-
-// const tableData: User[] = [
-//   {
-//     date: '2016-05-03',
-//     name: 'Tom',
-//     address: 'No. 189, Grove St, Los Angeles',
-//   },
-//   {
-//     date: '2016-05-02',
-//     name: 'Tom',
-//     address: 'No. 189, Grove St, Los Angeles',
-//   },
-//   {
-//     date: '2016-05-04',
-//     name: 'Tom',
-//     address: 'No. 189, Grove St, Los Angeles',
-//   },
-//   {
-//     date: '2016-05-01',
-//     name: 'Tom',
-//     address: 'No. 189, Grove St, Los Angeles',
-//   },
-// ]
 </script>
+
+<style lang="scss">
+.el-table__body {
+  .el-table__row {
+    .el-table_1_column_3 {
+      .cell {
+        display: inline-block;
+        overflow: hidden;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+</style>

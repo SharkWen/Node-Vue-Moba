@@ -5,50 +5,50 @@ module.exports = app => {
     const Article = mongoose.model("Article");
     const Hero = mongoose.model("Hero");
     const { newsTitles, heroesData } = require('./data')();
-    router.get('/news/init', async (req, res) => {
-        // const parent = await Category.findOne({
-        //     name: "新闻资讯"
-        // })
-        // const cats = await Category.find().where({
-        //     parentName: parent
-        // }).lean();
-        // // const newsList = newsTitles.map(title => {
-        // //     let randomCats = cats.slice(0).sort((a, b) => Math.random() - 0.5);
-        // //     return {
-        // //         categories: randomCats.slice(0, 2),
-        // //         title: title
-        // //     }
-        // // })
-        // Article.deleteMany({});
-        // const newsList = newsTitles.map((titleList, i) => {
-        //     titleList.titles = titleList.titles.map(title => {
-        //         return {
-        //             categories: cats[i]._id,
-        //             title: title
-        //         }
-        //     })
-        //     Article.insertMany(titleList.titles);
-        //     return titleList
-        // })
+    // router.get('/news/init', async (req, res) => {
+    //     // const parent = await Category.findOne({
+    //     //     name: "新闻资讯"
+    //     // })
+    //     // const cats = await Category.find().where({
+    //     //     parentName: parent
+    //     // }).lean();
+    //     // // const newsList = newsTitles.map(title => {
+    //     // //     let randomCats = cats.slice(0).sort((a, b) => Math.random() - 0.5);
+    //     // //     return {
+    //     // //         categories: randomCats.slice(0, 2),
+    //     // //         title: title
+    //     // //     }
+    //     // // })
+    //     // Article.deleteMany({});
+    //     // const newsList = newsTitles.map((titleList, i) => {
+    //     //     titleList.titles = titleList.titles.map(title => {
+    //     //         return {
+    //     //             categories: cats[i]._id,
+    //     //             title: title
+    //     //         }
+    //     //     })
+    //     //     Article.insertMany(titleList.titles);
+    //     //     return titleList
+    //     // })
 
-        // res.send(newsList);
-        let newInit = []
+    //     // res.send(newsList);
+    //     let newInit = []
 
-        for (let cats of newsTitles) {
-            //if(cats.name=="公告") continue; 
-            const catsName = await Category.findOne({ name: cats.name });
-            //await Article.deleteMany({categories:catsName._id})
-            cats.titles = cats.titles.map(ti => {
-                return {
-                    categories: catsName._id,
-                    title: ti
-                }
-            })
-            newInit.push(cats.titles)
-            await Article.insertMany(cats.titles)
-        }
-        res.send(newInit)
-    })
+    //     for (let cats of newsTitles) {
+    //         //if(cats.name=="公告") continue; 
+    //         const catsName = await Category.findOne({ name: cats.name });
+    //         //await Article.deleteMany({categories:catsName._id})
+    //         cats.titles = cats.titles.map(ti => {
+    //             return {
+    //                 categories: catsName._id,
+    //                 title: ti
+    //             }
+    //         })
+    //         newInit.push(cats.titles)
+    //         await Article.insertMany(cats.titles)
+    //     }
+    //     res.send(newInit)
+    // })
     router.get('/news/list', async (req, res) => {
         // const parent  = await Category.findOne({
         //     name:"新闻资讯"
@@ -107,23 +107,23 @@ module.exports = app => {
         })
         res.send(cats)
     })
-    router.get('/heroes/init', async (req, res) => {
-        const data = [];
-        await Hero.deleteMany({});
-        for (let cat of heroesData) {
-            if (cat.name === '热门') continue;
-            const category = await Category.findOne({
-                name: cat.name
-            })
-            cat.heroes = cat.heroes.map(hero => {
-                hero.categories = category
-                return hero;
-            })
-            data.push(cat.heroes);
-            await Hero.insertMany(cat.heroes)
-        }
-        res.send(data);
-    })
+    // router.get('/heroes/init', async (req, res) => {
+    //     const data = [];
+    //     await Hero.deleteMany({});
+    //     for (let cat of heroesData) {
+    //         if (cat.name === '热门') continue;
+    //         const category = await Category.findOne({
+    //             name: cat.name
+    //         })
+    //         cat.heroes = cat.heroes.map(hero => {
+    //             hero.categories = category
+    //             return hero;
+    //         })
+    //         data.push(cat.heroes);
+    //         await Hero.insertMany(cat.heroes)
+    //     }
+    //     res.send(data);
+    // })
     router.get('/heroes/list', async (req, res) => {
 
         const parent = await Category.findOne({

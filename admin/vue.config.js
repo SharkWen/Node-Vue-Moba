@@ -15,7 +15,6 @@ module.exports = defineConfig({
       }),
     ],
   },
-  outputDir:"dist",
-  assetsDir:"static",
-  publicPath:process.env.NODE_ENV === 'production' ? './' : '/',
+  outputDir:__dirname + '/../server/admin',
+  publicPath:process.env.NODE_ENV === 'production' ? '/admin/' : '/',
 })

@@ -3,5 +3,5 @@ module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave:false,
   outputDir:__dirname + '/../server/web',
-  publicPath:process.env.NODE_ENV === 'production' ? '/web/' : '/',
+  publicPath:process.env.NODE_ENV === 'production' ? '/' : '/',
 })

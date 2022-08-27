@@ -1,7 +1,7 @@
 inflection  "复数改单数"
 “core-js是“面向JavaScript的模块化标准库”,这意味着它提供大量函数以执行常见且有用的操作
 Multer 是一个 node.js 中间件，用于处理multipart/form-data 类型的表单数据，
-它主要用于上传文件。它是写在busboy 之上非常搞笑
+它主要用于上传文件。它被写在busboy的顶部以获得最大的效率。
 注意：Multer不会处理任何非 multipart/form-data 类型的表单数据。
 bcrypt 散列 一种加密方式
 jsonwebtoken 生成和验证token 

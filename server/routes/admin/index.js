@@ -45,10 +45,23 @@ module.exports = app => {
   })
   app.use('/admin/api/rest/:resource',authMiddleware(), resourceMiddleware(), router)
   const multer = require('multer')
-  const upload = multer({ dest: __dirname + '/../../uploads' });
+  const MAO = require('multer-aliyun-oss');
+  const upload = multer({
+    storage: MAO({
+        config: {
+            region: 'oss-cn-hangzhou',
+            accessKeyId: 'LTAI5tL6XiW9CRxRsMdieoVm',
+            accessKeySecret: 'BC5mRqHSaYhh6kBrvbFg8Hg15lpI9u',
+            bucket: 'moba-node',
+        },
+        // to set path prefix for files, could be string or function
+        destination: 'node-vue-moba'
+    })
+});
+  // const upload = multer({ dest: __dirname + '/../../uploads' });
   app.post('/admin/api/upload',authMiddleware() ,upload.single('file'), async (req, res) => {
     const file =  await req.file;
-    file.url = `http://127.0.0.1:3000/uploads/${file.filename}` 
+    // file.url = `http://127.0.0.1:3000/uploads/${file.filename}` 
     res.send(file)
   })
 

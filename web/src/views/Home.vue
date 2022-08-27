@@ -1,14 +1,16 @@
 <template>
   <div>
-    <swiper :modules="[Pagination]" :pagination="{ clickable: true }">
-      <swiper-slide>
-        <img class="w-100" src="../assets/images/swiper1.jpeg" alt="" />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="w-100" src="../assets/images/swiper2.jpeg" alt="" />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="w-100" src="../assets/images/swiper3.jpeg" alt="" />
+    <swiper
+      :modules="[Pagination]"
+      v-for="(ads, i) in adsItems"
+      :key="i"
+      :pagination="{ clickable: true }"
+    >
+      <swiper-slide v-for="(iii, ii) in 3" :key="ii">
+        <a :href="ads.items[ii].url" 
+        target="_blank"
+          ><img class="w-100" :src="ads.items[ii].image" alt=""
+        /></a>
       </swiper-slide>
     </swiper>
     <!-- end of swiper -->
@@ -29,11 +31,12 @@
     <m-ListCard title="新闻资讯" icon="menu1" :categories="newsCards">
       <template #items="{ category }">
         <div v-for="(news, i) in category.newsList" :key="i">
-          <router-link class="text-decoration" @click="active = i" :to="`/articles/${news._id}`">
-            <div
-              class="py-2 fs-lg d-flex"
-              :class="{ op: i === active }"
-            >
+          <router-link
+            class="text-decoration"
+            @click="active = i"
+            :to="`/articles/${news._id}`"
+          >
+            <div class="py-2 fs-lg d-flex" :class="{ op: i === active }">
               <span class="text-info">[{{ news.categoryName }}]</span>
               <span class="px-2">|</span>
               <span class="flex-1 text-dark-1 text-ellipsis pr-2">{{
@@ -78,6 +81,8 @@ import date from "dayjs";
 const active = ref(null);
 const newsCards = ref([]);
 const heroCards = ref([]);
+const adsItems = ref([]);
+
 const fetchNewsCats = async () => {
   const res = await $http.get("/news/list");
   newsCards.value = res.data;
@@ -86,9 +91,15 @@ const fetchHeroCats = async () => {
   const res = await $http.get("/heroes/list");
   heroCards.value = res.data;
 };
+const fetchAds = async () => {
+  const res = await $http.get("/ads/list");
+  adsItems.value = res.data;
+};
 onMounted(() => {
   fetchNewsCats();
   fetchHeroCats();
+  fetchAds();
+  console.log(adsItems.value);
 });
 </script>
 

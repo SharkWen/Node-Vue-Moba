@@ -4,6 +4,7 @@ module.exports = app => {
     const Category = mongoose.model("Category");
     const Article = mongoose.model("Article");
     const Hero = mongoose.model("Hero");
+    const Ads = mongoose.model("Ad");
     const { newsTitles, heroesData } = require('./data')();
     // router.get('/news/init', async (req, res) => {
     //     // const parent = await Category.findOne({
@@ -166,6 +167,10 @@ module.exports = app => {
         const data = await Hero.findById(req.params.id)
         .populate('categories items1 items2 partners.hero').lean();
         res.send(data); 
+    })
+    router.get('/ads/list',async (req,res)=>{
+        const data = await Ads.find().lean();
+        res.send(data);
     })
     app.use('/web/api', router);
 }

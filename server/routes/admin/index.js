@@ -72,7 +72,7 @@ module.exports = app => {
     const isValid = require('bcrypt').compareSync(password, User.password);
     assert(isValid,422,'密码错误')
     const jwt = require('jsonwebtoken');
-    const token = jwt.sign({ id: User._id }, app.get('secret'));
+    const token = jwt.sign({ id: User._id}, app.get('secret'),{expiresIn:60*60});
     res.send({ token });
 
   })

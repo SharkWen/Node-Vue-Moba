@@ -7,7 +7,7 @@
       <strong class="flex-1 text-blue pl-2">{{ model.title }}</strong>
       <!-- <div class="text-grey fs-xs">2019-06-19</div> -->
     </div>
-    <div v-html="model.body" class="px-3 by fs-lg"></div>
+    <div v-html="model.body" class="px-3 body fs-lg"></div>
     <div class="px-3 border-top py-3">
       <div class="d-flex ai-center">
         <i class="iconfont icon-menu1"></i>
